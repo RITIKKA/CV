@@ -1,0 +1,265 @@
+#include<iostream>
+#include<conio.h>
+#include<windows.h>
+
+using namespace std;
+
+struct emp
+{
+	string name , id , address;
+	int salary , contact;
+};
+int total = 0;
+emp e[100];
+void empdata()
+{
+	int user = 0;
+	cout<<"How many employees data do you want to enter ??"<<endl;
+	cin>>user;
+	
+	for(int i=total;i<total+user;i++)
+	{
+		cout<<"enter data of employee"<<i+1<<endl;
+		cout<<"enter employee name :";
+		cin>>e[i].name;
+		cout<<"enter id :";
+		cin>>e[i].id;
+		cout<<"enter address :";
+		cin>>e[i].address;
+		cout<<"enter contact :";
+		cin>>e[i].contact;
+		cout<<"enter salary :";
+		cin>>e[i].salary;
+	}
+	total = total + user;
+}
+
+void show()
+{
+	if(total!=0)
+	{
+		for(int i=0;i<total;i++)
+		{
+			cout<<"Data of employee"<<i+1<<endl;
+			cout<<"Nmae :"<<e[i].name<<endl;
+			cout<<"ID :"<<e[i].id<<endl;
+			cout<<"Address :"<<e[i].address<<endl;
+			cout<<"Contact :"<<e[i].contact<<endl;
+			cout<<"Salary :"<<e[i].salary<<endl;
+		}
+	}
+	else
+	{
+		cout<<"No data is entered"<<endl;
+	}
+}
+
+void search()
+{
+	if(total!=0)
+	{
+		string id;
+		cout<<"enter id of employee which you want to search"<<endl;
+		cin>>id;
+		for(int i=0;i<total;i++)
+		{
+			if(e[i].id == id)
+			{
+				cout<<"Data of employee "<<i+1<<endl;
+				cout<<"Name :"<<e[i].name<<endl;
+				cout<<"ID :"<<e[i].id<<endl;
+				cout<<"Address :"<<e[i].address<<endl;
+				cout<<"Contact :"<<e[i].contact<<endl;
+				cout<<"Salary :"<<e[i].salary<<endl;
+				break;
+			}
+			if(i == total-1)
+			{
+				cout<<"No such record found"<<endl;
+			}
+		}
+	}
+	else{
+		cout<<"No data is entered"<<endl;
+	}
+}
+
+void update()
+{
+	if(total!=0)
+	{
+		string id;
+		cout<<"enter id of employee which you want to update"<<endl;
+		cin>>id;
+		for(int i=0;i<total;i++)
+		{
+			if(e[i].id == id)
+			{
+				cout<<"old data of employee"<<i+1<<endl;
+				cout<<"Name :"<<e[i].name<<endl;
+				cout<<"ID :"<<e[i].id<<endl;
+				cout<<"Address :"<<e[i].address<<endl;
+				cout<<"Contact :"<<e[i].contact<<endl;
+				cout<<"Salary :"<<e[i].salary<<endl;
+				
+				cout<<"/n Enter New Data"<<endl;
+				
+				cout<<"enter employee name :";
+				cin>>e[i].name;
+				cout<<"enter ID :";
+				cin>>e[i].id;
+				cout<<"enter Address :";
+				cin>>e[i].address;
+				cout<<"enter contact :";
+				cin>>e[i].contact;
+				cout<<"enter salary :";
+				cin>>e[i].salary;
+				break;			
+			}
+			if(i == total-1)
+			{
+				cout<<"No such record found"<<endl;
+			}
+		}
+	}
+	else{
+		cout<<"No data is entered"<<endl;
+	}
+}
+
+void del()
+{
+	if(total!=0)
+	{
+		int press;
+		cout<<"Press 1 to delte specific record"<<endl;
+		cout<<"Press 2 to delete full record"<<endl;
+		cin>>press;
+		if(press == 1)
+		{
+			string id;
+			cout<<"enter id of employee which you want to delete"<<endl;
+			cin>>id;
+			for(int i=0;i<total;i++)
+			{
+				if(e[i].id == id)
+				{
+					e[i].name = e[i+1].name;
+					e[i].id = e[i+1].id;
+					e[i].address = e[i+1].address;
+					e[i].contact = e[i+1].contact;
+					e[i].salary = e[i+1].salary;
+					total --;
+					cout<<"your required record is deleted"<<endl;
+					break;
+				}
+				if(i == total-1)
+				{
+					cout<<"No such record found"<<endl;
+				}
+			}
+		}
+		else if(press == 2)
+		{
+			total = 0;
+			cout<<"All record is deleted "<<endl;
+		}
+		else
+		{
+			cout<<"Invalid input"<<endl;
+		}
+	}
+	else
+	{
+		cout<<"No data is entered"<<endl;
+	}
+}
+main()
+{
+	cout<<"/n/n/t Employee Management System"<<endl;
+	string username,password;
+	cout<<"/n/n/n/t/t ***** Signup*****"<<endl;
+	cout<<"/t/t enter new username :";
+	cin>>username;
+	cout<<"/t/t enter new password :";
+	cin>>password;
+	cout<<"\t\t your new id is creating plz wait";
+	for(int i=0;i<6;i++)
+	{
+		cout<<".";
+		Sleep(5000);
+	}
+	cout<<"/n/t/t your id created successfully";
+	Sleep(2000);
+	start:
+		system("CLS");
+		string usrn,pswd;
+		cout<<"/n/n/t/t Employee Management System"<<endl;
+		cout<<"/n/n/n/t/t LOGIN"<<endl;
+		cout<<"\t\t enter username :";
+		cin>>usrn;
+		cout<<"/t/t enter password :";
+		cin>>pswd;
+		if(usrn == username && pswd == password)
+		{
+			system("CLS");
+			char ch;
+			while(1)
+			{
+				cout<<"press 1 to enter data"<<endl;
+				cout<<"press 2 to show data"<<endl;
+				cout<<"press 3 to search data"<<endl;
+				cout<<"press 4 to update data"<<endl;
+				cout<<"press 5 to delete data"<<endl;
+				cout<<"press 6 to logout"<<endl;
+				cout<<"press 7 to exit"<<endl;
+				ch = getch();
+				system("CLS");
+				switch(ch)
+				{
+					case'1':
+						empdata();
+						break;
+					case'2':
+						show();
+						break;
+					case'3':
+						search();
+						break;
+					case'4':
+						update();
+						break;
+					case'5':
+						del();
+						break;
+					case'6':
+						goto start;
+						break;
+					case'7':
+						exit(0);
+						break;
+					defalut:
+						cout<<"/a Invalid Input"<<endl;
+					break;
+				}
+			}
+		}
+		else if(usrn != username)
+		{
+			cout<<"/t/t/a Invalid username plz try again";
+			Sleep(3000);
+			goto start;
+		}
+		else if(pswd != password)
+		{
+			cout<<"\t\t\a Invalid Password plz try again";
+			Sleep(3000);
+			goto start;
+		}
+		else
+		{
+			cout<<"/t/t/a Invalid username and password";
+			Sleep(3000);
+			goto start;
+		}
+}
